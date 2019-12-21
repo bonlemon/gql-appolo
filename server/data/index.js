@@ -17,6 +17,24 @@ let movies = [
         genre: 'Crime',
         directorId: 1,
     },
+    {
+        id: 4,
+        name: 'Movie 4',
+        genre: 'Comedy',
+        directorId: 1,
+    },
+    {
+        id: 5,
+        name: 'Movie 5',
+        genre: 'Sci-Fi-Comedy',
+        directorId: 1,
+    },
+    {
+        id: "6",
+        name: 'Movie 6',
+        genre: 'Black Comedy',
+        directorId: 3,
+    },
 ];
 
 let directors = [
@@ -32,7 +50,7 @@ let directors = [
     },
     {
         id: 3,
-        name: 'guy Ritchie',
+        name: 'Guy Ritchie',
         age: 43,
     },
 ];

@@ -1,5 +1,5 @@
-const { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLInt } = require( 'graphql');
-const { directors } = require('../data');
+const { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = require( 'graphql');
+const { movies, directors } = require('../data');
 
 const MovieType = new GraphQLObjectType({
     name: 'Movie',
@@ -11,8 +11,6 @@ const MovieType = new GraphQLObjectType({
             director: {
                 type: DirectorType,
                 resolve: (parent) => {
-                    console.log(directors);
-                    console.log(parent);
                     return directors.find(d => Number(d.id) === parent.directorId)
                 }
             }
@@ -27,6 +25,12 @@ const DirectorType = new GraphQLObjectType({
             id: { type: GraphQLID },
             name: { type: GraphQLString },
             age: { type: GraphQLInt },
+            movies: {
+                type: new GraphQLList(MovieType),
+                resolve: (parent) => {
+                    return movies.filter(m => m.directorId === Number(parent.id))
+                }
+            }
         }
     }
 });
