@@ -4,8 +4,8 @@
   "description": "",
   "main": "schema/index.js",
   "scripts": {
-    "dev": "nodemon server.js --exec babel-node --presets node6",
-    "prod": "node server.js --exec babel-node --presets node6"
+    "dev": "nodemon server.js",
+    "prod": "node server.js"
   },
   "author": "",
   "license": "ISC",
