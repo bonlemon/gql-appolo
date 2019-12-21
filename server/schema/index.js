@@ -1,4 +1,5 @@
 const { GraphQLID, GraphQLObjectType, GraphQLSchema, GraphQLString } = require( 'graphql');
+const { movies } = require('../data');
 
 const  MovieType = new GraphQLObjectType({
     name: 'Movie',
@@ -10,27 +11,6 @@ const  MovieType = new GraphQLObjectType({
         }
     }
 });
-
-let movies = [
-    {
-        id: "1",
-        name: 'Movie 1',
-        year: 2018,
-        directorId: 1,
-    },
-    {
-        id: "2",
-        name: 'Movie 2',
-        year: 2017,
-        directorId: 1,
-    },
-    {
-        id: 3,
-        name: 'Movie 3',
-        year: 2016,
-        directorId: 3,
-    },
-];
 
 const Query = new GraphQLObjectType({
     name: 'Query',
