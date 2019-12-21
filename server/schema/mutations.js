@@ -1,36 +1,38 @@
-const { GraphQLID, GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList } = require( 'graphql');
-const { MovieType, DirectorType } = require('../types');
+const { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLList } = require( 'graphql');
+const { MovieType, DirectorType } = require('./types');
+const Director = require('../models/director');
+const Movie = require('../models/movie');
 
-const Query = new GraphQLObjectType({
-    name: 'Query',
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
     fields: () => ({
         movie: {
             type: MovieType,
             args: { id: { type: GraphQLID } },
             resolve: (parent, args) => {
-                // return movies.find(movie => movie.id == args.id)
+                return Movie.findById(args.id)
             }
         },
         movies: {
             type: new GraphQLList(MovieType),
             resolve: (parent, args) => {
-                // return movies
+                return Movie.find({})
             }
         },
         director: {
             type: DirectorType,
             args: { id: { type: GraphQLID } },
             resolve: (parent, args) => {
-                // return directors.find(director => director.id == args.id)
+                return Director.findById(args.id)
             }
         },
         directors: {
             type: new GraphQLList(DirectorType),
             resolve: (parent, args) => {
-                // return directors
+                return Director.find({})
             }
         },
     })
 });
 
-module.exports = new GraphQLSchema({ query: Query });
+module.exports = { Mutation };
