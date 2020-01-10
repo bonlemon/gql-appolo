@@ -7,6 +7,8 @@ const cors = require('cors');
 const server = express();
 const PORT = 3333;
 
+server.use(cors());
+
 // Connect to DB
 mongoose.connect('mongodb://Ivan:1q2w3e@ds145369.mlab.com:45369/graphql-appolo-2', { useNewUrlParser: true, useUnifiedTopology: true })
     // .then(() => console.log("DB server connected!"))
@@ -17,7 +19,6 @@ server.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-server.use(cors());
 
 const dbConnection = mongoose.connection;
 dbConnection.on('error', err => console.log(`Connection error: ${err}`));

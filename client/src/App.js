@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import Tabs from './components/Tabs/Tabs';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './components/theme';
-import AppoloClient from 'apollo-boost';
-import { AppoloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
-const client = new AppoloClient({
+const client = new ApolloClient({
     uri: 'http://localhost:3333/graphql',
 });
 
 class App extends Component {
     render() {
         return (
-            <AppoloProvider client={client}>
+            <ApolloProvider client={client}>
                 <MuiThemeProvider theme={theme}>
                     <Tabs />
                 </MuiThemeProvider>
-            </AppoloProvider>
+            </ApolloProvider>
         );
     }
 }
