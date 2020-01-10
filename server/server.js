@@ -17,7 +17,7 @@ server.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-server.use(cors()  );
+server.use(cors());
 
 const dbConnection = mongoose.connection;
 dbConnection.on('error', err => console.log(`Connection error: ${err}`));

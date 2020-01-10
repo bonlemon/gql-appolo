@@ -1,0 +1,11 @@
+{
+  "name": "gql-appolo",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^1.19.1"
+  }
+}

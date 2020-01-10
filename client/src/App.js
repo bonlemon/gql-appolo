@@ -6,19 +6,19 @@ import AppoloClient from 'apollo-boost';
 import { AppoloProvider } from 'react-apollo';
 
 const client = new AppoloClient({
-  uri: 'http://localhost:3333/graphql'
-})
+    uri: 'http://localhost:3333/graphql',
+});
 
 class App extends Component {
-  render() {
-    return (
-        <AppoloProvider client={client}>
-          <MuiThemeProvider theme={theme}>
-            <Tabs />
-          </MuiThemeProvider>
-        </AppoloProvider>
-    );
-  }
+    render() {
+        return (
+            <AppoloProvider client={client}>
+                <MuiThemeProvider theme={theme}>
+                    <Tabs />
+                </MuiThemeProvider>
+            </AppoloProvider>
+        );
+    }
 }
 
 export default App;
