@@ -1,3 +1,5 @@
+const { GraphQLBoolean, GraphQLNonNull } = require('graphql');
+
 const { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = require( 'graphql');
 const Director = require('../models/director');
 const Movie = require('../models/movie');
@@ -7,14 +9,16 @@ const MovieType = new GraphQLObjectType({
     fields: () => {
         return {
             id: { type: GraphQLID },
-            name: { type: GraphQLString },
-            genre: { type: GraphQLString },
+            name: { type: new GraphQLNonNull(GraphQLString) },
+            genre: { type: new GraphQLNonNull(GraphQLString) },
+            watched: { type: new GraphQLNonNull(GraphQLBoolean) },
+            rate: { type: GraphQLInt },
             director: {
                 type: DirectorType,
-                resolve: (parent) => {
-                    return Director.findById(parent.directorId)
+                resolve: ({directorId}) => {
+                    return Director.findById(directorId)
                 }
-            }
+            },
         }
     }
 });
@@ -28,8 +32,8 @@ const DirectorType = new GraphQLObjectType({
             age: { type: GraphQLInt },
             movies: {
                 type: new GraphQLList(MovieType),
-                resolve: (parent) => {
-                    return Movie.find({directorId: parent.id})
+                resolve: ({id}) => {
+                    return Movie.find({directorId: id})
                 }
             }
         }

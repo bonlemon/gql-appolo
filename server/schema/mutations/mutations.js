@@ -1,4 +1,4 @@
-const { GraphQLID, GraphQLString, GraphQLInt, GraphQLNonNull } = require('graphql');
+const { GraphQLID, GraphQLString, GraphQLInt, GraphQLNonNull, GraphQLBoolean } = require('graphql');
 const { MovieType, DirectorType } = require('../types');
 const Director = require('../../models/director');
 const Movie = require('../../models/movie');
@@ -10,11 +10,8 @@ const director = {
             name: { type: new GraphQLNonNull(GraphQLString) },
             age: { type: new GraphQLNonNull(GraphQLInt) },
         },
-        resolve: (parent, args) => {
-            const director = new Director({
-                name: args.name,
-                age: args.age,
-            });
+        resolve: (parent, {name, age}) => {
+            const director = new Director( {name, age});
             // Save() метод mongoose
             return director.save();
         },
@@ -24,8 +21,8 @@ const director = {
         args: {
             id: { type: new GraphQLNonNull(GraphQLID) },
         },
-        resolve: (parent, args) => {
-            return Director.findByIdAndRemove(args.id);
+        resolve: (parent, {id}) => {
+            return Director.findByIdAndRemove(id);
         },
     },
     updateDirector: {
@@ -48,13 +45,11 @@ const movie = {
             name: { type: new GraphQLNonNull(GraphQLString) },
             genre: { type: new GraphQLNonNull(GraphQLString) },
             directorId: { type: GraphQLID },
+            rate: { type: GraphQLInt },
+            watched: { type: new GraphQLNonNull(GraphQLBoolean) },
         },
-        resolve: (parent, args) => {
-            const movie = new Movie({
-                name: args.name,
-                genre: args.genre,
-                directorId: args.directorId,
-            });
+        resolve: (parent, { id, name, age, directorId, rate, watched }) => {
+            const movie = new Movie({ id, name, age, directorId, rate, watched });
             return movie.save();
         },
     },
@@ -75,8 +70,8 @@ const movie = {
             genre: { type: new GraphQLNonNull(GraphQLString) },
             directorId: { type: GraphQLID },
         },
-        resolve: (parent, { id, name, age, directorId }) => {
-            return Movie.findByIdAndUpdate(id, { $set: { name, age, directorId } }, { new: true });
+        resolve: (parent, { id, name, age, directorId, rate, watched }) => {
+            return Movie.findByIdAndUpdate(id, { $set: { name, age, directorId, rate, watched } }, { new: true });
         },
     },
 };

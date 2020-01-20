@@ -34,7 +34,7 @@ let movies = [
     {
         id: 5,
         name: "Movie 5",
-        genre: "Sci-Fi-Comedy",
+        genre: " bvc",
         directorId: 1,
     },
     {
