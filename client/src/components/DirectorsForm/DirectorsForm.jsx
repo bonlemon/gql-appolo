@@ -6,6 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import SaveIcon from '@material-ui/icons/Save';
 
 import withHocs from './DirectorsFormHoc';
+import { addDirectorMutation } from './mutations';
 
 class DirectorsForm extends React.Component {
   handleClose = () => { this.props.onClose(); };
@@ -13,6 +14,7 @@ class DirectorsForm extends React.Component {
   handleSave = () => {
     const { selectedValue, onClose } = this.props;
     const { id, name, age } = selectedValue;
+    addDirectorMutation({ name, age: Number(age)});
     onClose();
   };
 
