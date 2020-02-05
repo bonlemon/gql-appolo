@@ -6,4 +6,12 @@ export const  addDirectorMutation = gql`
             name
         }
     }
-`
+`;
+
+export const  updateDirectorMutation = gql`
+    mutation updateDirector($id: String!, $name: String!, $age: Int!) {
+        updateDirector(id: $id, name: $name, age: $age) {
+            name
+        }
+    }
+`;
