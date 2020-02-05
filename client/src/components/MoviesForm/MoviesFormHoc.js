@@ -3,15 +3,15 @@ import { compose } from 'recompose';
 
 import { styles } from './styles';
 import { graphql } from 'react-apollo';
-import { addDirectorMutation } from '../DirectorsForm/mutations';
-import { movieQuery } from '../MoviesTable/queries';
+import { addMovieMutation } from './mutations';
+import { moviesQuery } from '../MoviesTable/queries';
 import { directorsQuery } from './queries';
 
-const withGraphqlAdd = graphql(addDirectorMutation, {
+const withGraphqlAdd = graphql(addMovieMutation, {
     props: ({ mutate }) => ({
-        addMovie: ({movie}) => mutate({
+        addMovie: (movie) => mutate({
             variable: movie,
-            refetchQueries: [{movieQuery}]
+            refetchQueries: [{ moviesQuery }]
         })
     })
 })
