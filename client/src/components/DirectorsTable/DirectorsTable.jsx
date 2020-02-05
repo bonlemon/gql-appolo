@@ -52,7 +52,6 @@ class DirectorsTable extends React.Component {
   render() {
     const { anchorEl, openDialog, data: activeElem = {} } = this.state;
     const { classes, data = {} } = this.props;
-    console.log(data);
     const { directors = [] } = data;
 
     return (

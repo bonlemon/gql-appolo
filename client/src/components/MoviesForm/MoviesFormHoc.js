@@ -7,13 +7,13 @@ import { addMovieMutation } from './mutations';
 import { moviesQuery } from '../MoviesTable/queries';
 import { directorsQuery } from './queries';
 
-const withGraphqlAdd = graphql(addMovieMutation, {
+const withGraphql = graphql(addMovieMutation, {
     props: ({ mutate }) => ({
         addMovie: (movie) => mutate({
-            variable: movie,
-            refetchQueries: [{ moviesQuery }]
+            variables: movie,
+            refetchQueries: [{ query: moviesQuery }]
         })
     })
 })
 
-export default compose(withStyles(styles), withGraphqlAdd, graphql(directorsQuery));
+export default compose(withStyles(styles), withGraphql, graphql(directorsQuery));

@@ -48,8 +48,8 @@ const movie = {
             rate: { type: GraphQLInt },
             watched: { type: new GraphQLNonNull(GraphQLBoolean) },
         },
-        resolve: (parent, { id, name, age, directorId, rate, watched }) => {
-            const movie = new Movie({ id, name, age, directorId, rate, watched });
+        resolve: (parent, { id, name, genre, directorId, rate, watched }) => {
+            const movie = new Movie({ id, name, genre, directorId, rate, watched });
             return movie.save();
         },
     },
@@ -70,8 +70,8 @@ const movie = {
             genre: { type: new GraphQLNonNull(GraphQLString) },
             directorId: { type: GraphQLID },
         },
-        resolve: (parent, { id, name, age, directorId, rate, watched }) => {
-            return Movie.findByIdAndUpdate(id, { $set: { name, age, directorId, rate, watched } }, { new: true });
+        resolve: (parent, { id, name, genre, directorId, rate, watched }) => {
+            return Movie.findByIdAndUpdate(id, { $set: { name, genre, directorId, rate, watched } }, { new: true });
         },
     },
 };

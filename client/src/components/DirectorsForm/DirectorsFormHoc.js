@@ -11,7 +11,7 @@ const withGraphqlAdd = graphql(addDirectorMutation, {
     props: ({ mutate }) => ({
         addDirector: director => mutate({
             variables: director,
-            refetchQueries: [{query: directorsQuery}]
+            refetchQueries: [{ query: directorsQuery }]
         })
     })
 });
